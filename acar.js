@@ -15,29 +15,20 @@ const qDb = require("quick.db");
 const db = new qDb.table("ayarlar");
 const cezaDb = new qDb.table("aCezalar");
 const acarhook = new WebhookClient(client.veri.hosgeldinSistemi.webhookID, client.veri.hosgeldinSistemi.webhookTOKEN);
-fs.readdir("./acar/Komutlar/", (err, dirs) => {
-    if (err) console.error(err);
-    dirs.forEach(dir => {
-      if (dir.endsWith(".js")) {
-        fs.rename("./acar/Komutlar/" + dir, "./acar/Komutlar/Diger/" + dir, err =>
-          console.log(err)
-        );
-      } else
-        fs.readdir("./acar/Komutlar/" + dir, (err2, files) => {
-          if (err) console.error(err2);
-          files.forEach(f => {
-            if (!f.endsWith(".js")) return;
-            let referans = require(`./acar/Komutlar/${dir}/${f}`);
-            console.log(`[~ ACAR ~] (${dir}/${f}) adlı komut çalışır hale getirildi.`)
-            if(typeof referans.onLoad === "function") referans.onLoad(client);
+fs.readdir("./acar/Komutlar", (err, files) => {
+    if(err) return console.error(err);
+    files = files.filter(file => file.endsWith(".js"));
+    console.log(`[ ${files.length} ] Adet ACAR Komutları Yüklenecek!`);
+    files.forEach(file => {
+        let referans = require(`./acar/Komutlar/${file}`);
+  if(typeof referans.onLoad === "function") referans.onLoad(client);
             client.komutlar.set(referans.Isim, referans);
             if (referans.Komut) {
               referans.Komut.forEach(alias => client.komut.set(alias, referans));
             }
           });
-        });
-    });
-  });
+});
+
   fs.readdir("./acar/Etkinlikler/", (err, files) => {
     if (err) return console.myTime(err);
     files.forEach(fileName => {
@@ -49,37 +40,29 @@ fs.readdir("./acar/Komutlar/", (err, dirs) => {
       );
     });
   });
-client.on("message", (message) => {
+ client.on("message", (message) => {
     if([".link", "!link"].includes(message.content.toLowerCase())){ 
     return message.channel.send(message.client.veri.sunucuDavetLinki); 
     }
     if([".tag", "!tag"].includes(message.content.toLowerCase())){ 
       return message.channel.send(message.client.veri.Tag); 
     }
-    if (message.author.bot || !message.content.startsWith(message.client.sistem.a_Prefix)) return;
-    let Args = message.content
-      .substring(message.client.sistem.a_Prefix.length)
-      .split(" ");
-    let Komut = Args[0];
-    let Acar = message.client;
-    Args = Args.splice(1);
-    let Baslatici;
-    let guild = message.guild || null;
-    if (guild != null)
-      await guild.fetch().then(result => guild = result)
-    if (Acar.komutlar.has(Komut)) {
-      Baslatici = Acar.komutlar.get(Komut);
-      if (Baslatici.TekSunucu && message.channel.type == "dm")
-        return;
-      Baslatici.onRequest(Acar, message, Args, guild);
-    } else if (Acar.komut.has(Komut)) {
-      Baslatici = Acar.komut.get(Komut);
-      if (Baslatici.TekSunucu && message.channel.type == "dm")
-        return;
-      Baslatici.onRequest(Acar, message, Args, guild);
-    }
-    bekleme[message.member.id] = Date.now();
-  }
+      if (message.author.bot ||!message.content.startsWith(client.sistem.a_Prefix) || !message.channel || message.channel.type == "dm") return;
+      let args = message.content
+        .substring(client.sistem.a_Prefix.length)
+        .split(" ");
+      let komutcuklar = args[0];
+      let bot = message.client;
+      args = args.splice(1);
+      let calistirici;
+      if (bot.komut.has(komutcuklar)) {
+        calistirici = bot.komut.get(komutcuklar);
+      
+        calistirici.onRequest(bot, message, args);
+      } else if (bot.komutlar.has(komutcuklar)) {
+        calistirici = bot.komutlar.get(komutcuklar);
+        calistirici.onRequest(bot, message, args);
+      }
 });
   client.gecmisTarihHesaplama = (date) => {
     const startedAt = Date.parse(date);
