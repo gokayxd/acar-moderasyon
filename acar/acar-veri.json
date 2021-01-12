@@ -53,9 +53,9 @@
     "kayıtsızYapanRoller": [""],
     "kayıtYapanRoller": [""],
     "kayıtsızRolleri": [""],
+    "tagRolu": "",
     "erkekRolleri": [""],
-    "kadinRolleri": [""],
-    "tagRolu": [""]
+    "kadinRolleri": [""]
 },
 
 "Emojiler": {
