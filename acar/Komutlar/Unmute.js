@@ -32,7 +32,7 @@ module.exports = {
     let uye = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
     if(!uye) return message.channel.send(`Hata: Lütfen bir üye etiketleyin veya Id giriniz!  __Örn:__  \`${client.sistem.a_Prefix}unmute @acar/ID\``).then(sil => sil.delete({timeout: 5000}));
     if (message.member.roles.highest.position <= uye.roles.highest.position) return message.channel.send(`Hata: Belirttiğin kişi senden üstün veya onunla aynı yetkidesin!`).then(sil => sil.delete({timeout: 5000}));
-    let muteler = cezaDb.get(`susturulma`);
+    let muteler = cezaDb.get(`susturulma`) || [];
     let sesmuteler = cezaDb.get(`sessusturulma`) || [];
     let kalicimuteler = cezaDb.get(`kalicisusturma`) || [];
     uye.roles.remove(acar.Roller.muteRolu).catch();
