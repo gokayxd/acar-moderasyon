@@ -34,9 +34,9 @@ module.exports = {
     if (message.member.roles.highest.position <= uye.roles.highest.position) return message.channel.send(`Hata: Belirttiğin kişi senden üstün veya onunla aynı yetkidesin!`).then(sil => sil.delete({timeout: 5000}));
     let jaildekiler = cezaDb.get(`cezalı`) || [];
     let kalıcıjaildekiler = cezaDb.get(`kalıcıcezalı`) || [];
-    cezaDb.set(`cezalı`, jaildekiler.filter(x => !x.includes(uye.id)));
+    if (kalıcıjaildekiler.some(j => j.includes(uye.id))) cezaDb.set(`kalıcıcezalı`, kalıcıjaildekiler.filter(x => !x.includes(uye.id)));
+    if (jaildekiler.some(j => j.id === uye.id)) cezaDb.set(`cezalı`, jaildekiler.filter(x => x.id !== uye.id));
     kullaniciverisi.set(`ceza.${jaildekiler.No}.BitisZaman`, Date.now());
-    cezaDb.set(`kalıcıcezalı`, kalıcıjaildekiler.filter(x => x.id !== uye.id));
     let erkeks = uye.roles.cache.filter(x => x.managed).map(x => x.id).concat(acar.kayıtRolleri.erkekRolleri);
     let teyitsiz = uye.roles.cache.filter(x => x.managed).map(x => x.id).concat(acar.kayıtRolleri.kayıtsızRolleri);
     let kizs = uye.roles.cache.filter(x => x.managed).map(x => x.id).concat(acar.kayıtRolleri.kadinRolleri);
