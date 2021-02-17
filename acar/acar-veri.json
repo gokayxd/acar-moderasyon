@@ -18,7 +18,9 @@
     "uyarıLogKanali": "",
     "tagLogKanali": "",
     "chatKanali": "",
-    "kurallarKanal": ""
+    "kurallarKanal": "",
+    "mesajLogKanali": "",
+    "sesLogKanali": ""
 },
 
 "hosgeldinSistemi": {
