@@ -6,7 +6,7 @@ const acarveri = client.veri;
 module.exports = {
     Isim: "isim",
     Komut: ["nick", "i"],
-    Kullanim: "isim @transsly/ID <isim> <yaş>",
+    Kullanim: "isim @acar/ID <isim> <yaş>",
     Aciklama: "Belirlenen üyenin sununucu içerisindeki isim ve yaşını değiştir.",
     Kategori: "Kayıt Komutları",
     TekSunucu: true,
