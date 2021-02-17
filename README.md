@@ -1,5 +1,6 @@
 # acar-moderasyon
-Ceza bilgi sistemi, sicil, isim geçmişi, tepkili kayıt, Webhook Hoşgeldin ve daha daha Alın millet kod saklıyor ben de paylaşıyorum geliştirirsiniz!
+Ceza bilgi sistemi, sicil, isim geçmişi, Webhook Hoşgeldin, Moderasyon Komutları ve daha daha alın public sunucularınıza hazır bütün herşeyi kurulu sorun olursa dc ulaşabilirsin.
+Onun dışında düzeltmeler gerçekleşti şimdi içinde hem register hem moderasyon direk kur başka bot kurmana gerek kalmayacaktır.
 
 
 ./acar/acar-ayar.json
