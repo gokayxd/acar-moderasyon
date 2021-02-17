@@ -27,6 +27,10 @@
     "webhookID": "",
     "webhookTOKEN": ""
 },
+"RolLog": {
+    "webhookID":"",
+    "webhookTOKEN":""
+},
 
 "Roller": {
     "botcuRolu": "",
