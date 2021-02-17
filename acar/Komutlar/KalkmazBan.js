@@ -25,7 +25,7 @@ module.exports = {
   onRequest: async function (client, message, args) {
     let cezano = cezaNoDb.get(`cezano.${client.sistem.a_SunucuID}`) + 1;
     let embed = new MessageEmbed().setColor('0x2f3136').setTitle(`Kalkmazban (v2.0)`).setAuthor(acar.Tag + " " + acar.sunucuIsmi, message.guild.iconURL({dynamic: true, size: 2048}))
-    if(!message.member.roles.cache.has(client.veri.Roller.botcuRolu)) return message.channel.send(`Hata: Bu komutunu kullanabilmek için herhangi bir yetkiye sahip değilsin.`).then(x => x.delete({timeout: 5000}));
+    if(!message.member.roles.cache.has(client.veri.Roller.kurucuRolu)) return message.channel.send(`Hata: Bu komutunu kullanabilmek için herhangi bir yetkiye sahip değilsin.`).then(x => x.delete({timeout: 5000}));
     let kullanıcılar = await qDb.get(`akb_${message.guild.id}`)
     let kullanıcı = args[0];
     let reason = args.splice(1).join(" ");
