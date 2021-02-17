@@ -6,10 +6,6 @@
 "yasakTaglar": [],
 "sunucuDavetLinki": "discord.gg/",
 "embedUfakResim": "",
-"tepkiId": {
-    "erkekTepkiId": "",
-    "kadinTepkiId": ""
-},
 "Kanallar": {
     "kayitSonrasi": "",
     "banLogKanali": "",
@@ -46,9 +42,20 @@
     "muteHammer": [""],
     "voiceMuteHammer": [""],
     "jailHammer": [""],
-    "banHammer": [""]
+    "banHammer": [""],
+    "rolVerYetkileri": [""],
+    "roleManager": [""],
+    "vipRolu": ""
 },
-
+"Yetenek": {
+    "vokalRolu": "",
+    "müzisyenRolu": "",
+    "telliRolu": "",
+    "yazılımcıRolu": "",
+    "tasarımcıRolu": "",
+    "ressamRolu": "",
+    "şairRolu": ""
+},
 "kayıtRolleri": {
     "kayıtsızYapanRoller": [""],
     "kayıtYapanRoller": [""],
