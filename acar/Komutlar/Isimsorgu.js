@@ -6,7 +6,7 @@ const acarveri = client.veri;
 module.exports = {
     Isim: "isimler",
     Komut: ["isimsorgu"],
-    Kullanim: "isimsorgu @transsly/ID",
+    Kullanim: "isimsorgu @acar/ID",
     Aciklama: "Belirlenen üyenin önceki isim ve yaşlarını gösterir.",
     Kategori: "Kayıt Komutları",
     TekSunucu: true,
@@ -26,7 +26,7 @@ module.exports = {
     if((!acar.erkekRolleri && !acar.kadinRolleri) || !acar.kayıtYapanRoller) return message.channel.send("Sistemsel hata: Rol bulunamadı veya rol bilgileri girilemedi.").then(sil => sil.delete({timeout: 5000}));
     if(!acar.kayıtYapanRoller.some(rol => message.member.roles.cache.has(rol)) && !message.member.hasPermission('ADMINISTRATOR')) return message.channel.send(`Hata: Bu komutu kullanabilmek için yeterli yetkiye sahip değilsin.`).then(sil => sil.delete({timeout: 5000}));
     let uye = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
-    if(!uye) return message.channel.send(`Hata: Lütfen bir üye etiketleyin veya Id giriniz!  __Örn:__  \`${client.sistem.a_Prefix}isimsorgu @transsly/ID\``).then(sil => sil.delete({timeout: 5000}));
+    if(!uye) return message.channel.send(`Hata: Lütfen bir üye etiketleyin veya Id giriniz!  __Örn:__  \`${client.sistem.a_Prefix}isimsorgu @acar/ID\``).then(sil => sil.delete({timeout: 5000}));
     let isimsorgu = kullaniciverisi.get(`k.${uye.id}.isimler`) || [];
    let Liste = isimsorgu.length || `0`;
   isimsorgu = isimsorgu.reverse();
