@@ -43,8 +43,8 @@ module.exports = {
     kDb.set(`ceza.${sesmuteler.No}.BitisZaman`, Date.now());
     if (uye.voice.channel) uye.voice.setMute(false);
     message.channel.send(`${unmuteicon} ${uye} (\`${uye.id}\`), üyesinin ses ve metin kanallarında ki susturulması __kaldırıldı__.`).catch().then(x => x.delete({timeout: 5000}));
-    message.react("✅")
     if(acar.Kanallar.muteLogKanali && client.channels.cache.has(acar.Kanallar.muteLogKanali)) client.channels.cache.get(acar.Kanallar.muteLogKanali).send(embed.setDescription(`${uye} (\`${uye.id}\`), adlı üyenin ${message.author} (\`${message.author.id}\`), tarafından ses ve metin kanallarından susturulması kaldırıldı!`)).catch();
-    }
+      message.react("✅")
+   }
 };
 
