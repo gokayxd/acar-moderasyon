@@ -24,7 +24,7 @@ module.exports = {
 
   function yasakliTagKontrolEt() {
     let acar = client.veri;
-    let acarveri = db.get("ayar") || {};
+    let acarveri = client.veri
     let sid = client.sistem.a_sunucuId;
     
     // Yasaklı tag tarama (Yasaklı Tag Checkleme)
@@ -34,7 +34,7 @@ module.exports = {
     let uye = client.guilds.cache.get(sid).members.cache.get(kisi.slice(1));
     if (uye && yasakTaglar.some(tag => uye.user.username.includes(tag)) && !uye.roles.cache.has(acar.Roller.yasakliTagRolu)) uye.roles.set(uye.roles.cache.has(acar.Roller.boosterRolu) ? [acar.Roller.boosterRolu, acar.Roller.yasakliTagRolu] : [acar.Roller.yasakliTagRolu]).catch();
     if (uye && !yasakTaglar.some(tag => uye.user.username.includes(tag)) && uye.roles.cache.has(acar.Roller.yasakliTagRolu)) {
-      db.set("yasakTaglilar", yasakTaglilar.filter(x => !x.includes(uye.id)));
+      cezaDb.set("yasakTaglilar", yasakTaglilar.filter(x => !x.includes(uye.id)));
       uye.roles.set(acar.kayıtRolleri.kayıtsızRolleri).catch();
       if(acar.IkinciTag) uye.setNickname(`${acar.IkinciTag} İsim | Yaş`).catch();
       else if(acar.Tag) uye.setNickname(`${acar.Tag} İsim | Yaş`).catch();
