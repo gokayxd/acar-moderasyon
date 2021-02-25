@@ -6,10 +6,6 @@ const acar = client.veri.kayıtRolleri;
 const acarveri = client.veri;
 const Ayarlar = client.veri.tepkiId;
 const acarkanallar = client.veri.Kanallar;
-const tepkiler = [
-    Ayarlar.erkekTepkiId,
-    Ayarlar.kadinTepkiId,
-];
 module.exports = {
     Isim: "kadin",
     Komut: ["k", "kiz"],
